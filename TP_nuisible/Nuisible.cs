@@ -20,6 +20,11 @@ namespace TP_nuisible
             Etat = "MORT";
         }
 
+        ///  Methode de suppression d'instance
+        private void SupprInstance()
+        {
+            this = null;
+        }
         ///  Methode de mofication de la position en Y
         private void ModifPositionY (int maxY, int mouvement)
         {
