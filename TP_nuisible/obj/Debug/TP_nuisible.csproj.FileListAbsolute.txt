@@ -1,0 +1,7 @@
+C:\Users\MI-Alban\source\repos\TP_nuisible\TP_nuisible\bin\Debug\TP_nuisible.exe.config
+C:\Users\MI-Alban\source\repos\TP_nuisible\TP_nuisible\bin\Debug\TP_nuisible.exe
+C:\Users\MI-Alban\source\repos\TP_nuisible\TP_nuisible\bin\Debug\TP_nuisible.pdb
+C:\Users\MI-Alban\source\repos\TP_nuisible\TP_nuisible\obj\Debug\TP_nuisible.csprojAssemblyReference.cache
+C:\Users\MI-Alban\source\repos\TP_nuisible\TP_nuisible\obj\Debug\TP_nuisible.csproj.CoreCompileInputs.cache
+C:\Users\MI-Alban\source\repos\TP_nuisible\TP_nuisible\obj\Debug\TP_nuisible.exe
+C:\Users\MI-Alban\source\repos\TP_nuisible\TP_nuisible\obj\Debug\TP_nuisible.pdb
