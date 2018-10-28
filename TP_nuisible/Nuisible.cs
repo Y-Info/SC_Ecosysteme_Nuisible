@@ -14,11 +14,13 @@ namespace TP_nuisible
         public int PositionY { get; set; }
         public string Etat { get; set; }
 
+        ///  Methode de mofication de l'etat pour mort
         public void EtatDead()
         {
             Etat = "MORT";
         }
 
+        ///  Methode de mofication de la position en Y
         private void ModifPositionY (int maxY, int mouvement)
         {
             PositionY = PositionY + mouvement;
@@ -35,6 +37,8 @@ namespace TP_nuisible
                 }
             }
         }
+
+        ///  Methode de mofication de la position en X
         private void ModifPositionX(int maxX, int mouvement)
         {
             PositionX = PositionX + mouvement;
@@ -52,6 +56,57 @@ namespace TP_nuisible
             }
         }
 
+        ///  Methode permettant de connaitre la classe d'un enfant de la classe nuisible
+        public string getChildClass()
+        {
+
+            string origin;
+            if(this is Zombie) 
+            {
+                origin = "zombie";
+                return origin;
+            }
+            else
+            {
+                if(this is Rat)
+                {
+                    origin = "rat";
+                    return origin;
+                }
+                else
+                {
+                    if(this is Pigeon)
+                    {
+                        origin = "pigeons";
+                        return origin;
+                    }
+                    else
+                    {
+                        origin = "inconnu";
+                        return origin;
+                    }
+
+                }
+            }
+        }
+
+        ///  Methode pour la contamination d'un nuisible en zombie
+        public void ContaminationEnZombie()
+        {
+            this.VitesseDeplacement = 5;
+            this.Etat = "MORT-VIVANT";
+
+        }
+
+        ///  Methode de deplacement des nuisibles
+        ///  orientations : Nord : 0
+        ///                 Nord-Est : 1
+        ///                 Est : 2
+        ///                 Sud-Est : 3
+        ///                 Sud : 4
+        ///                 Sud-Ouest : 5
+        ///                 Ouet : 6
+        ///                 Nord-Ouest : 7
         public void Deplacement(int maxX, int maxY, int orientation)
         {
             int demiVitese;

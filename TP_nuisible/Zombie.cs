@@ -8,10 +8,18 @@ namespace TP_nuisible
 {
     class Zombie : Nuisible
     {
+        public Zombie( string nom, int posX, int posY)
+        {
+            this.Nom = nom;
+            this.PositionX = posX;
+            this.PositionY = posY;
+            this.Etat = "MORT-VIVANT";
+            this.VitesseDeplacement = 5;
+        }
         public Zombie()
         {
-            Etat = "VIVANT";
-            VitesseDeplacement = 5;
+            this.Etat = "MORT-VIVANT";
+            this.VitesseDeplacement = 5;
         }
         public void Grogner()
         {
