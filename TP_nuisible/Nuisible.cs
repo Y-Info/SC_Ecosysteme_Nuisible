@@ -30,10 +30,34 @@ namespace TP_nuisible
         /// Methode de test suite a collision
         public static void preFight(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
         {
-            if ( firstChallenger.Etat == "zombifier" || secondChallenger.Etat == "zombifier" || firstChallenger.Etat == "MORT-VIVANT" || secondChallenger.Etat == "MORT-VIVANT")
+            if ( firstChallenger.Etat == "MORT-VIVANT" || secondChallenger.Etat == "MORT-VIVANT")
             {
-                /// redistribue a la methode de zombification
                 Console.WriteLine("Il y en a un qui va se faire bouffer");
+                if (firstChallenger.Etat != "MORT-VIVANT" && secondChallenger.Etat == "MORT-VIVANT")
+                {
+                    Nuisible.zombification(firstChallenger);
+                }
+                else
+                {
+                    if(secondChallenger.Etat != "MORT-VIVANT" && firstChallenger.Etat == "MORT-VIVANT")
+                    {
+                        Nuisible.zombification(secondChallenger);
+                    }
+                    else
+                    {
+                        if (firstChallenger.Etat == "MORT-VIVANT" && secondChallenger.Etat == "MORT-VIVANT")
+                        {
+                            Console.WriteLine("Ca sert a rien de vous battre vous etes frere de sang");
+                        }
+                        else
+                        {
+                            Console.WriteLine("L'etat de first challenger est : " + firstChallenger.Etat);
+                            Console.WriteLine("L'etat du second challenger est :" + secondChallenger.Etat);
+                            Console.WriteLine("Il y a clairement un bug dans la matrice !");
+                        }
+                    }
+                }
+                
             }
             else
             {
@@ -41,8 +65,21 @@ namespace TP_nuisible
             }
         }
 
+
+        /// Methode de zombification
+        private static void zombification(Nuisible newZombie)
+        {
+            newZombie.Etat = "MORT-VIVANT";
+            // newZombie.VitesseDeplacement = 5;
+        }
+
+         
+
+ 
+
+
         /// Methode de combat entre rats et pigeons
-        public static void regularFight(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
+        private static void regularFight(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
         {
             string firstOrigin = firstChallenger.getChildClass();
             string secondOrigin = secondChallenger.getChildClass();

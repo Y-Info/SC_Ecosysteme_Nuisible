@@ -98,6 +98,8 @@ namespace TP_nuisible
             int testrandom = aleatoire.Next(0, 2);
             Console.WriteLine("Le chiffre tiree aleatoirement est le " + testrandom);
             Nuisible.preFight(remi, ZGefrey, testrandom, nuisibles);
+            Console.WriteLine("Il est arrivee malheur a remi !");
+            Console.WriteLine("Remi est devenu : " + remi.Etat);
 
 
             Console.WriteLine("\n");
