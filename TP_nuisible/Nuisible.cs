@@ -20,11 +20,40 @@ namespace TP_nuisible
             Etat = "MORT";
         }
 
-        ///  Methode de suppression d'instance
-        private void SupprInstance()
+        ///  Methode de suppression d'instance et suppression dans la liste des vivants
+        private static void selectionNaturel (Nuisible obj, List<Nuisible> vivant)
         {
-            this = null;
+            vivant.Remove(obj);
+            obj = null;
         }
+
+
+        /// Methode de combat entre rats et pigeons
+        public static void regularFight(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
+        {
+            string firstOrigin = firstChallenger.getChildClass();
+            string secondOrigin = secondChallenger.getChildClass();
+
+
+            if (firstOrigin == "rat" && random == 0 && secondOrigin == "pigeon" || firstOrigin == "pigeon" && random == 1 && secondOrigin == "rat")
+            {
+                Nuisible.selectionNaturel(firstChallenger, vivant);
+            }
+            else
+            {
+                if(firstOrigin == "rat" && random == 1 && secondOrigin == "pigeon" || firstOrigin == "pigeon" && random == 0 && secondOrigin == "rat")
+                {
+                    Nuisible.selectionNaturel(secondChallenger, vivant);
+                }
+                else
+                {
+                    Console.WriteLine("impossible de faire combattre un " + firstOrigin + " et un " + secondOrigin);
+                }
+            }
+        }
+
+
+
         ///  Methode de mofication de la position en Y
         private void ModifPositionY (int maxY, int mouvement)
         {

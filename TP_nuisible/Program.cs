@@ -25,6 +25,7 @@ namespace TP_nuisible
             Nuisible pigeyotot = new Pigeon();
             Nuisible ZGefrey = new Zombie();
 
+
             nuisibles.Add(remi);
             nuisibles.Add(fred);
             nuisibles.Add(titou);
@@ -93,8 +94,11 @@ namespace TP_nuisible
             Console.WriteLine("--------------------------------- ");
             Console.WriteLine("\n");
 
-            string test = fred.getChildClass();
-            Console.WriteLine(test);
+
+            int testrandom = aleatoire.Next(0, 2);
+            Console.WriteLine("Le chiffre tiree aleatoirement est le " + testrandom);
+            Nuisible.regularFight(remi, ZGefrey, testrandom, nuisibles);
+
 
             Console.WriteLine("\n");
             Console.WriteLine("--------------------------------- ");
