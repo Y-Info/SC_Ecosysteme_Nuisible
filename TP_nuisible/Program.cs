@@ -97,7 +97,7 @@ namespace TP_nuisible
 
             int testrandom = aleatoire.Next(0, 2);
             Console.WriteLine("Le chiffre tiree aleatoirement est le " + testrandom);
-            Nuisible.regularFight(remi, ZGefrey, testrandom, nuisibles);
+            Nuisible.preFight(remi, ZGefrey, testrandom, nuisibles);
 
 
             Console.WriteLine("\n");

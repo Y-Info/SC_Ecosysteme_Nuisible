@@ -27,6 +27,19 @@ namespace TP_nuisible
             obj = null;
         }
 
+        /// Methode de test suite a collision
+        public static void preFight(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
+        {
+            if ( firstChallenger.Etat == "zombifier" || secondChallenger.Etat == "zombifier" || firstChallenger.Etat == "MORT-VIVANT" || secondChallenger.Etat == "MORT-VIVANT")
+            {
+                /// redistribue a la methode de zombification
+                Console.WriteLine("Il y en a un qui va se faire bouffer");
+            }
+            else
+            {
+                Nuisible.regularFight(firstChallenger, secondChallenger, random, vivant);
+            }
+        }
 
         /// Methode de combat entre rats et pigeons
         public static void regularFight(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
@@ -34,16 +47,17 @@ namespace TP_nuisible
             string firstOrigin = firstChallenger.getChildClass();
             string secondOrigin = secondChallenger.getChildClass();
 
-
             if (firstOrigin == "rat" && random == 0 && secondOrigin == "pigeon" || firstOrigin == "pigeon" && random == 1 && secondOrigin == "rat")
             {
                 Nuisible.selectionNaturel(firstChallenger, vivant);
+                firstChallenger.Etat = "MORT";
             }
             else
             {
                 if(firstOrigin == "rat" && random == 1 && secondOrigin == "pigeon" || firstOrigin == "pigeon" && random == 0 && secondOrigin == "rat")
                 {
                     Nuisible.selectionNaturel(secondChallenger, vivant);
+                    secondChallenger.Etat = "MORT";
                 }
                 else
                 {
