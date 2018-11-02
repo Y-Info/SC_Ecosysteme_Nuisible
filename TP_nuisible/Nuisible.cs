@@ -27,27 +27,31 @@ namespace TP_nuisible
             obj = null;
         }
 
-        /// Methode de test suite a collision
+        /// Methode de test suite a une collision
         public static void preFight(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
         {
             if ( firstChallenger.Etat == "MORT-VIVANT" || secondChallenger.Etat == "MORT-VIVANT")
             {
-                Console.WriteLine("Il y en a un qui va se faire bouffer");
                 if (firstChallenger.Etat != "MORT-VIVANT" && secondChallenger.Etat == "MORT-VIVANT")
                 {
                     Nuisible.zombification(firstChallenger);
+                    Console.WriteLine("Il c'est fait transformer par le nuisible ID : " + secondChallenger.ID);
+                    Console.WriteLine("\n");
                 }
                 else
                 {
                     if(secondChallenger.Etat != "MORT-VIVANT" && firstChallenger.Etat == "MORT-VIVANT")
                     {
                         Nuisible.zombification(secondChallenger);
+                        Console.WriteLine("Il c'est fait transforme par le nuisible ID : " + firstChallenger.ID);
+                        Console.WriteLine("\n");
                     }
                     else
                     {
                         if (firstChallenger.Etat == "MORT-VIVANT" && secondChallenger.Etat == "MORT-VIVANT")
                         {
-                            Console.WriteLine("Ca sert a rien de vous battre vous etes frere de sang");
+
+                            Console.WriteLine("Les nuisibles : " + firstChallenger.ID + " et " + secondChallenger.ID + " sont tout deux des Zombies");
                         }
                         else
                         {
@@ -69,7 +73,12 @@ namespace TP_nuisible
         /// Methode de zombification
         private static void zombification(Nuisible newZombie)
         {
-            newZombie.Etat = "MORT-VIVANT";
+            if (newZombie.Etat != "MORT-VIVANT")
+            {
+                Console.WriteLine("-------- Zombification --------");
+                Console.WriteLine("Le nuisible ID : " + newZombie.ID + " est devenu un zombie");
+                newZombie.Etat = "MORT-VIVANT";
+            }
             // newZombie.VitesseDeplacement = 5;
         }
 
@@ -81,11 +90,13 @@ namespace TP_nuisible
         /// Methode de combat entre rats et pigeons
         private static void regularFight(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
         {
+            Console.WriteLine("-------- Regular Fight --------");
             string firstOrigin = firstChallenger.getChildClass();
             string secondOrigin = secondChallenger.getChildClass();
 
             if (firstOrigin == "rat" && random == 0 && secondOrigin == "pigeon" || firstOrigin == "pigeon" && random == 1 && secondOrigin == "rat")
             {
+                Console.WriteLine("Le nuisible ID : " + secondChallenger.ID + " " + secondOrigin + " a tuer le nuisible ID : " + firstChallenger.ID + " " + firstOrigin);
                 Nuisible.selectionNaturel(firstChallenger, vivant);
                 firstChallenger.Etat = "MORT";
             }
@@ -93,6 +104,7 @@ namespace TP_nuisible
             {
                 if(firstOrigin == "rat" && random == 1 && secondOrigin == "pigeon" || firstOrigin == "pigeon" && random == 0 && secondOrigin == "rat")
                 {
+                    Console.WriteLine("Le nuisible ID : " + firstChallenger.ID + " " + firstOrigin + " a tuer le nuisible ID : " + secondChallenger.ID + " " + secondOrigin);
                     Nuisible.selectionNaturel(secondChallenger, vivant);
                     secondChallenger.Etat = "MORT";
                 }
@@ -101,6 +113,7 @@ namespace TP_nuisible
                     Console.WriteLine("impossible de faire combattre un " + firstOrigin + " et un " + secondOrigin);
                 }
             }
+            Console.WriteLine("\n");
         }
 
 

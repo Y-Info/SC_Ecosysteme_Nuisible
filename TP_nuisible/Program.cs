@@ -56,7 +56,7 @@ namespace TP_nuisible
                 nuisible.PositionY = tempy;
                 nuisible.ID = i;
                 Console.WriteLine("--------------------------------- ");
-                Console.WriteLine("La position initial de " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
+                Console.WriteLine("La position initial du nuisible ID : " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
             }
 
             Console.WriteLine("\n");
@@ -69,30 +69,21 @@ namespace TP_nuisible
 
 
 
-
-
-
-
-
-
-
-
-
             /// Zone de test de codes
-            Console.WriteLine("\n");
-            Console.WriteLine("--------------------------------- ");
-            Console.WriteLine("-- Entree en zone de test -- ");
-            Console.WriteLine("--------------------------------- ");
-            Console.WriteLine ("\n");
+            //Console.WriteLine("\n");
+            //Console.WriteLine("--------------------------------- ");
+            //Console.WriteLine("-- Entree en zone de test -- ");
+            //Console.WriteLine("--------------------------------- ");
+            //Console.WriteLine ("\n");
 
 
 
             // Partie de test des methodes
-            Console.WriteLine("\n");
-            Console.WriteLine("--------------------------------- ");
-            Console.WriteLine("-- Nous allons faire des tests experimental sur fred -- ");
-            Console.WriteLine("--------------------------------- ");
-            Console.WriteLine("\n");
+            //Console.WriteLine("\n");
+            //Console.WriteLine("--------------------------------- ");
+            //Console.WriteLine("-- Nous allons faire des tests experimental sur fred -- ");
+            //Console.WriteLine("--------------------------------- ");
+            //Console.WriteLine("\n");
 
 
             //int testrandom = aleatoire.Next(0, 2);
@@ -102,29 +93,29 @@ namespace TP_nuisible
             //Console.WriteLine("Remi est devenu : " + remi.Etat);
 
 
-            Console.WriteLine("\n");
-            Console.WriteLine("--------------------------------- ");
-            Console.WriteLine("-- Fin de test sur fred. -- ");
-            Console.WriteLine("--------------------------------- ");
-            Console.WriteLine("\n");
+            //Console.WriteLine("\n");
+            //Console.WriteLine("--------------------------------- ");
+            //Console.WriteLine("-- Fin de test sur fred. -- ");
+            //Console.WriteLine("--------------------------------- ");
+            //Console.WriteLine("\n");
 
 
 
 
             
 
-            if (titou.PositionY == ZGefrey.PositionY && titou.PositionX == ZGefrey.PositionX)
-                {
-                    //Console.WriteLine("Zgefrey est au meme endroit que titou");
-                }
+            //if (titou.PositionY == ZGefrey.PositionY && titou.PositionX == ZGefrey.PositionX)
+            //    {
+            //        //Console.WriteLine("Zgefrey est au meme endroit que titou");
+            //    }
 
-            Console.WriteLine("\n");
-            Console.WriteLine("--------------------------------- ");
-            Console.WriteLine("-- Sortie de zone de test -- ");
-            Console.WriteLine("--------------------------------- ");
-            Console.WriteLine ("\n");
+            //Console.WriteLine("\n");
+            //Console.WriteLine("--------------------------------- ");
+            //Console.WriteLine("-- Sortie de zone de test -- ");
+            //Console.WriteLine("--------------------------------- ");
+            //Console.WriteLine ("\n");
 
-            Console.ReadLine();
+            //Console.ReadLine();
 
 
 
@@ -166,7 +157,7 @@ namespace TP_nuisible
                     orientation = aleatoire.Next(0, 8); 
                     nuisible.Deplacement(MonEcosyst.LimiteX, MonEcosyst.LimiteY, orientation);
                     Console.WriteLine("--------------------------------- ");
-                    Console.WriteLine("La position final de " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
+                    Console.WriteLine("La position final du nuisible ID : " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
                     //Console.WriteLine("La position final de " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y  ayant pour orientation " + orientation + " et se deplace a une vitesse de " + nuisible.VitesseDeplacement);
 
                 }
@@ -180,7 +171,7 @@ namespace TP_nuisible
 
                 Console.WriteLine("\n");
                 Console.WriteLine("--------------------------------- ");
-                Console.WriteLine("-- Debut des tests de collision -- ");
+                Console.WriteLine("-- Debut des evenements -- ");
                 Console.WriteLine("--------------------------------- ");
                 Console.WriteLine("\n");
 
@@ -192,14 +183,14 @@ namespace TP_nuisible
 
                     var test1 = memePos.ToArray();
 
-                    Console.WriteLine("L'objet numero : " + nuisible.ID + " est en colision avec : " + test1.Length + " Objet(s) ");
+                    //Console.WriteLine("L'objet numero : " + nuisible.ID + " est en colision avec : " + test1.Length + " Objet(s) ");
                     for (int y = 0; y < test1.Length; y++)
                     {
                         if (test1[y].ID > nuisible.ID)
                         {
 
-                            Console.WriteLine("C'est l'objet : " + test1[y].ID + " positionner en " + test1[y].PositionX + "X" + test1[y].PositionY + "Y");
-
+                            //Console.WriteLine("C'est l'objet : " + test1[y].ID + " positionner en " + test1[y].PositionX + "X" + test1[y].PositionY + "Y");
+                            Console.WriteLine("Le nuisible ID : " + nuisible.ID + " est en collision avec le nuisible ID : " + test1[y].ID );
                             int temprandom = aleatoire.Next(0, 2);
                             Nuisible.preFight(test1[y], nuisible, temprandom, nuisibles);
                         }
@@ -209,7 +200,7 @@ namespace TP_nuisible
 
                 Console.WriteLine("\n");
                 Console.WriteLine("--------------------------------- ");
-                Console.WriteLine("-- Fin des test de collision pour ce tour -- ");
+                Console.WriteLine("-- Fin des evenements -- ");
                 Console.WriteLine("--------------------------------- ");
                 Console.WriteLine("\n");
 
@@ -226,19 +217,13 @@ namespace TP_nuisible
                 {
                     string tempClass = nuisible.getChildClass();
                     Console.WriteLine("--------------------------------- ");
-                    Console.WriteLine("Le Nuisible d'ID : " + nuisible.ID + " est un : " + tempClass + " son etat actuel est : " + nuisible.Etat);
+                    Console.WriteLine("Le Nuisible d'ID : " + nuisible.ID + " est un " + tempClass + " son etat actuel est : " + nuisible.Etat);
 
                     //Console.WriteLine("La position final de " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y  ayant pour orientation " + orientation + " et se deplace a une vitesse de " + nuisible.VitesseDeplacement);
 
                 }
 
                 Console.WriteLine("\n");
-                Console.WriteLine("--------------------------------- ");
-                Console.WriteLine("-- Fin des deplacement des nuisibles pour ce tour -- ");
-                Console.WriteLine("--------------------------------- ");
-                Console.WriteLine("\n");
-
-
                 var beauaffich = z + 1;
                 Console.WriteLine("Vous venez de terminer le tour numero : " + beauaffich);
                 Console.ReadLine();
