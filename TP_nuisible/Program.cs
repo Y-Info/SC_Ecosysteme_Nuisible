@@ -14,24 +14,45 @@ namespace TP_nuisible
             Random aleatoire = new Random();
 
             // initialisation de la taille de l'ecosysteme
-            Ecosysteme MonEcosyst = new Ecosysteme(2,2);
+            Ecosysteme MonEcosyst = new Ecosysteme(100,100);
 
             // initialisation des occupants de l'ecosysteme
             List<Nuisible> nuisibles = new List<Nuisible>();
-            Nuisible remi = new Rat();
-            Nuisible fred = new Rat();
-            Nuisible titou = new Pigeon();
-            Nuisible pigey = new Pigeon();
-            Nuisible pigeyotot = new Pigeon();
-            Nuisible ZGefrey = new Zombie();
+
+            Nuisible Gordon = new Rat();
+            Nuisible Lyne = new Rat();
+            Nuisible Luna = new Rat();
+            Nuisible Devy = new Rat();
+            Nuisible Djimmy = new Rat();
+            Nuisible Dewi = new Rat();
+
+            Nuisible Roy = new Pigeon();
+            Nuisible Robert = new Pigeon();
+            Nuisible May = new Pigeon();
+            Nuisible Maya = new Pigeon();
+            Nuisible Manon = new Pigeon();
+            Nuisible Lorenza = new Pigeon();
+            Nuisible Alfred = new Pigeon();
+
+            Nuisible Glen = new Zombie();
+            Nuisible Ange = new Zombie();
 
 
-            nuisibles.Add(remi);
-            nuisibles.Add(fred);
-            nuisibles.Add(titou);
-            nuisibles.Add(pigey);
-            nuisibles.Add(pigeyotot);
-            nuisibles.Add(ZGefrey);
+            nuisibles.Add(Gordon);
+            nuisibles.Add(Lyne);
+            nuisibles.Add(Luna);
+            nuisibles.Add(Devy);
+            nuisibles.Add(Djimmy);
+            nuisibles.Add(Dewi);
+            nuisibles.Add(Roy);
+            nuisibles.Add(Robert);
+            nuisibles.Add(May);
+            nuisibles.Add(Maya);
+            nuisibles.Add(Manon);
+            nuisibles.Add(Lorenza);
+            nuisibles.Add(Alfred);
+            nuisibles.Add(Glen);
+            nuisibles.Add(Ange);
 
 
 
@@ -139,8 +160,8 @@ namespace TP_nuisible
             Console.WriteLine("--------------------------------- ");
 
             // BOUCLE D'EVOLUTION DE L'ECOSYSTEME
-            int nombreTics = 10;
-            for(int z = 0; z < nombreTics; z++)
+            int nbTics = 1000;
+            for(int z = 0; z < nbTics; z++)
             {
 
 
@@ -181,18 +202,18 @@ namespace TP_nuisible
                 {
                     IEnumerable<Nuisible> memePos = nuisibles.Where((x) => x != nuisible && x.PositionX == nuisible.PositionX && x.PositionY == nuisible.PositionY);
 
-                    var test1 = memePos.ToArray();
+                    var memePasArray = memePos.ToArray();
 
                     //Console.WriteLine("L'objet numero : " + nuisible.ID + " est en colision avec : " + test1.Length + " Objet(s) ");
-                    for (int y = 0; y < test1.Length; y++)
+                    for (int y = 0; y < memePasArray.Length; y++)
                     {
-                        if (test1[y].ID > nuisible.ID)
+                        if (memePasArray[y].ID > nuisible.ID)
                         {
 
                             //Console.WriteLine("C'est l'objet : " + test1[y].ID + " positionner en " + test1[y].PositionX + "X" + test1[y].PositionY + "Y");
-                            Console.WriteLine("Le nuisible ID : " + nuisible.ID + " est en collision avec le nuisible ID : " + test1[y].ID );
+                            Console.WriteLine("Le nuisible ID : " + nuisible.ID + " est en collision avec le nuisible ID : " + memePasArray[y].ID );
                             int temprandom = aleatoire.Next(0, 2);
-                            Nuisible.preFight(test1[y], nuisible, temprandom, nuisibles);
+                            Nuisible.preFight(memePasArray[y], nuisible, temprandom, nuisibles);
                         }
                     }
                     // Console.WriteLine("\n");
@@ -224,9 +245,9 @@ namespace TP_nuisible
                 }
 
                 Console.WriteLine("\n");
-                var beauaffich = z + 1;
-                Console.WriteLine("Vous venez de terminer le tour numero : " + beauaffich);
-                Console.ReadLine();
+                var affichTour = z + 1;
+                Console.WriteLine("Vous venez de terminer le tour numero : " + affichTour);
+                //Console.ReadLine();
             }
 
 
