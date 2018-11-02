@@ -8,9 +8,9 @@ namespace TP_nuisible
 {
     class Zombie : Nuisible
     {
-        public Zombie( string nom, int posX, int posY)
+        public Zombie( int ID, int posX, int posY)
         {
-            this.Nom = nom;
+            this.ID = ID;
             this.PositionX = posX;
             this.PositionY = posY;
             this.Etat = "MORT-VIVANT";

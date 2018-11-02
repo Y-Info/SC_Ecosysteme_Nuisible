@@ -8,7 +8,7 @@ namespace TP_nuisible
 {
     class Nuisible
     {
-        public string Nom { get; set; }
+        public int ID { get; set; }
         public int VitesseDeplacement { get; set; }
         public int PositionX { get; set; }
         public int PositionY { get; set; }
@@ -162,7 +162,7 @@ namespace TP_nuisible
                 {
                     if(this is Pigeon)
                     {
-                        origin = "pigeons";
+                        origin = "pigeon";
                         return origin;
                     }
                     else

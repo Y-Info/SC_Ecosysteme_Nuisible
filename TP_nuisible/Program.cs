@@ -14,7 +14,7 @@ namespace TP_nuisible
             Random aleatoire = new Random();
 
             // initialisation de la taille de l'ecosysteme
-            Ecosysteme MonEcosyst = new Ecosysteme(100,100);
+            Ecosysteme MonEcosyst = new Ecosysteme(2,2);
 
             // initialisation des occupants de l'ecosysteme
             List<Nuisible> nuisibles = new List<Nuisible>();
@@ -42,7 +42,7 @@ namespace TP_nuisible
             Console.WriteLine("\n");
 
 
-            // initialisation des positions et des nom pour chaque nuisible
+            // initialisation des positions et des ID pour chaque nuisible
             int i = 0;
             foreach (Nuisible nuisible in nuisibles)
             {
@@ -54,9 +54,9 @@ namespace TP_nuisible
                 int tempy = aleatoire.Next(minPos, maxPosY);
                 nuisible.PositionX = tempx;
                 nuisible.PositionY = tempy;
-                nuisible.Nom = i.ToString();
+                nuisible.ID = i;
                 Console.WriteLine("--------------------------------- ");
-                Console.WriteLine("La position initial de " + nuisible.Nom + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
+                Console.WriteLine("La position initial de " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
             }
 
             Console.WriteLine("\n");
@@ -95,11 +95,11 @@ namespace TP_nuisible
             Console.WriteLine("\n");
 
 
-            int testrandom = aleatoire.Next(0, 2);
-            Console.WriteLine("Le chiffre tiree aleatoirement est le " + testrandom);
-            Nuisible.preFight(remi, ZGefrey, testrandom, nuisibles);
-            Console.WriteLine("Il est arrivee malheur a remi !");
-            Console.WriteLine("Remi est devenu : " + remi.Etat);
+            //int testrandom = aleatoire.Next(0, 2);
+            //Console.WriteLine("Le chiffre tiree aleatoirement est le " + testrandom);
+            //Nuisible.preFight(remi, ZGefrey, testrandom, nuisibles);
+            //Console.WriteLine("Il est arrivee malheur a remi !");
+            //Console.WriteLine("Remi est devenu : " + remi.Etat);
 
 
             Console.WriteLine("\n");
@@ -111,20 +111,7 @@ namespace TP_nuisible
 
 
 
-            // Test des collisions
-            foreach (Nuisible nuisible in nuisibles)
-            {
-                IEnumerable<Nuisible> memePos = nuisibles.Where((x) => x != nuisible && x.PositionX == nuisible.PositionX && x.PositionY == nuisible.PositionY);
-
-                var test1 = memePos.ToArray();
-
-                //Console.WriteLine("L'objet numero : " + nuisible.Nom + " est en colision avec : " + test1.Length + " Objet(s) ");
-                for (int y = 0; y < test1.Length; y++)
-                {
-                    //Console.WriteLine("C'est l'objet : " + test1[y].Nom + " positionner en " + test1[y].PositionX + "X" + test1[y].PositionY + "Y");
-                }
-               // Console.WriteLine("\n");
-            }
+            
 
             if (titou.PositionY == ZGefrey.PositionY && titou.PositionX == ZGefrey.PositionX)
                 {
@@ -179,8 +166,8 @@ namespace TP_nuisible
                     orientation = aleatoire.Next(0, 8); 
                     nuisible.Deplacement(MonEcosyst.LimiteX, MonEcosyst.LimiteY, orientation);
                     Console.WriteLine("--------------------------------- ");
-                    Console.WriteLine("La position final de " + nuisible.Nom + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
-                    //Console.WriteLine("La position final de " + nuisible.Nom + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y  ayant pour orientation " + orientation + " et se deplace a une vitesse de " + nuisible.VitesseDeplacement);
+                    Console.WriteLine("La position final de " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
+                    //Console.WriteLine("La position final de " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y  ayant pour orientation " + orientation + " et se deplace a une vitesse de " + nuisible.VitesseDeplacement);
 
                 }
 
@@ -190,6 +177,66 @@ namespace TP_nuisible
                 Console.WriteLine("--------------------------------- ");
                 Console.WriteLine("\n");
 
+
+                Console.WriteLine("\n");
+                Console.WriteLine("--------------------------------- ");
+                Console.WriteLine("-- Debut des tests de collision -- ");
+                Console.WriteLine("--------------------------------- ");
+                Console.WriteLine("\n");
+
+
+                // Test des collisions
+                foreach (Nuisible nuisible in nuisibles.ToList())
+                {
+                    IEnumerable<Nuisible> memePos = nuisibles.Where((x) => x != nuisible && x.PositionX == nuisible.PositionX && x.PositionY == nuisible.PositionY);
+
+                    var test1 = memePos.ToArray();
+
+                    Console.WriteLine("L'objet numero : " + nuisible.ID + " est en colision avec : " + test1.Length + " Objet(s) ");
+                    for (int y = 0; y < test1.Length; y++)
+                    {
+                        if (test1[y].ID > nuisible.ID)
+                        {
+
+                            Console.WriteLine("C'est l'objet : " + test1[y].ID + " positionner en " + test1[y].PositionX + "X" + test1[y].PositionY + "Y");
+
+                            int temprandom = aleatoire.Next(0, 2);
+                            Nuisible.preFight(test1[y], nuisible, temprandom, nuisibles);
+                        }
+                    }
+                    // Console.WriteLine("\n");
+                }
+
+                Console.WriteLine("\n");
+                Console.WriteLine("--------------------------------- ");
+                Console.WriteLine("-- Fin des test de collision pour ce tour -- ");
+                Console.WriteLine("--------------------------------- ");
+                Console.WriteLine("\n");
+
+
+
+                Console.WriteLine("\n");
+                Console.WriteLine("--------------------------------- ");
+                Console.WriteLine("-- Etat de l'ecosysteme a la fin de ce tour -- ");
+                Console.WriteLine("--------------------------------- ");
+                Console.WriteLine("\n");
+
+                // Lecture du tableau
+                foreach (Nuisible nuisible in nuisibles)
+                {
+                    string tempClass = nuisible.getChildClass();
+                    Console.WriteLine("--------------------------------- ");
+                    Console.WriteLine("Le Nuisible d'ID : " + nuisible.ID + " est un : " + tempClass + " son etat actuel est : " + nuisible.Etat);
+
+                    //Console.WriteLine("La position final de " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y  ayant pour orientation " + orientation + " et se deplace a une vitesse de " + nuisible.VitesseDeplacement);
+
+                }
+
+                Console.WriteLine("\n");
+                Console.WriteLine("--------------------------------- ");
+                Console.WriteLine("-- Fin des deplacement des nuisibles pour ce tour -- ");
+                Console.WriteLine("--------------------------------- ");
+                Console.WriteLine("\n");
 
 
                 var beauaffich = z + 1;
