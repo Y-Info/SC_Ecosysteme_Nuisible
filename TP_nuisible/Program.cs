@@ -56,7 +56,20 @@ namespace TP_nuisible
 
 
 
-            Console.WriteLine("\n");
+            Console.WriteLine( "Pour initialiser la simulation veuillez choisir un type d'ecosysteme : Aleatoire, UmbrellaCorp ou Citadin" );
+            string chooseEcoType = Console.ReadLine();
+            while (chooseEcoType != "Aleatoire" && chooseEcoType != "UmbrellaCorp" && chooseEcoType != "Citadin")
+            {
+                Console.WriteLine("Desoler type d'ecosysteme : " + chooseEcoType + " n'existe pas :/ ");
+                Console.WriteLine("Veuillez choisir le type d'ecosysteme parmi ceux proposer ci-dessus!");
+                Console.WriteLine();
+                chooseEcoType = Console.ReadLine();
+                Console.WriteLine("\n");
+            }
+
+
+
+                Console.WriteLine("\n");
             Console.WriteLine("--------------------------------- ");
             Console.WriteLine("-- Debut de l'initialisation des positions -- ");
             Console.WriteLine("--------------------------------- ");
