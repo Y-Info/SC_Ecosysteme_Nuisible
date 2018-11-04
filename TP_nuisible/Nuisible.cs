@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TP_nuisible
 {
-    class Nuisible
+    public abstract class Nuisible
     {
         public int ID { get; set; }
         public int VitesseDeplacement { get; set; }

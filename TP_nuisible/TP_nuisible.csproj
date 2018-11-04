@@ -45,11 +45,15 @@
   <ItemGroup>
     <Compile Include="Ecosysteme.cs" />
     <Compile Include="Nuisible.cs" />
+    <Compile Include="NuisibleFactory.cs" />
     <Compile Include="Pigeon.cs" />
+    <Compile Include="PigeonFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rat.cs" />
+    <Compile Include="RatFactory.cs" />
     <Compile Include="Zombie.cs" />
+    <Compile Include="ZombieFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

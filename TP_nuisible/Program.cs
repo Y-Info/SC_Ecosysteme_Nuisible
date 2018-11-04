@@ -10,53 +10,26 @@ namespace TP_nuisible
     {
         static void Main(string[] args)
         {
+            // initialisation des variables de parametrages
+            List<Nuisible> nuisibles = new List<Nuisible>();
+            int ecoLarg = 100;
+            int ecoLong = 100;
+            int maxNuisible = 19;
+            int nbTics = 1000;
+
             // initialisation de la variable random
             Random aleatoire = new Random();
 
             // initialisation de la taille de l'ecosysteme
-            Ecosysteme MonEcosyst = new Ecosysteme(100,100);
-
-            // initialisation des occupants de l'ecosysteme
-            List<Nuisible> nuisibles = new List<Nuisible>();
-
-            Nuisible Gordon = new Rat();
-            Nuisible Lyne = new Rat();
-            Nuisible Luna = new Rat();
-            Nuisible Devy = new Rat();
-            Nuisible Djimmy = new Rat();
-            Nuisible Dewi = new Rat();
-
-            Nuisible Roy = new Pigeon();
-            Nuisible Robert = new Pigeon();
-            Nuisible May = new Pigeon();
-            Nuisible Maya = new Pigeon();
-            Nuisible Manon = new Pigeon();
-            Nuisible Lorenza = new Pigeon();
-            Nuisible Alfred = new Pigeon();
-
-            Nuisible Glen = new Zombie();
-            Nuisible Ange = new Zombie();
-
-
-            nuisibles.Add(Gordon);
-            nuisibles.Add(Lyne);
-            nuisibles.Add(Luna);
-            nuisibles.Add(Devy);
-            nuisibles.Add(Djimmy);
-            nuisibles.Add(Dewi);
-            nuisibles.Add(Roy);
-            nuisibles.Add(Robert);
-            nuisibles.Add(May);
-            nuisibles.Add(Maya);
-            nuisibles.Add(Manon);
-            nuisibles.Add(Lorenza);
-            nuisibles.Add(Alfred);
-            nuisibles.Add(Glen);
-            nuisibles.Add(Ange);
+            Ecosysteme MonEcosyst = new Ecosysteme(ecoLarg,ecoLong);
 
 
 
-            Console.WriteLine( "Pour initialiser la simulation veuillez choisir un type d'ecosysteme : Aleatoire, UmbrellaCorp ou Citadin" );
+
+
+
+
+            Console.WriteLine("Pour initialiser la simulation veuillez choisir un type d'ecosysteme : Aleatoire, UmbrellaCorp ou Citadin");
             string chooseEcoType = Console.ReadLine();
             while (chooseEcoType != "Aleatoire" && chooseEcoType != "UmbrellaCorp" && chooseEcoType != "Citadin")
             {
@@ -67,9 +40,45 @@ namespace TP_nuisible
                 Console.WriteLine("\n");
             }
 
+            if(chooseEcoType == "Aleatoire")
+            {
+                int tempMaxNuisible = maxNuisible / 3;
+                int tempRat = aleatoire.Next(0,tempMaxNuisible);
+                int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
+                int tempZombie = aleatoire.Next(0, tempMaxNuisible);
+                Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
+            }
+            else
+            {
+                if(chooseEcoType == "UmbrellaCorp")
+                {
+                    int tempMaxNuisible = maxNuisible / 4;
+                    int tempRat = aleatoire.Next(0, tempMaxNuisible);
+                    int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
+
+                    int fiftyZombie = tempRat + tempPigeon;
+
+                    int tempRest = maxNuisible - fiftyZombie - tempRat - tempPigeon;
+                    int alealRest = aleatoire.Next(0, tempRest);
+                    int tempZombie = (tempRat + tempPigeon + alealRest);
+                    Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
+                }
+                else
+                {
+                    if(chooseEcoType == "Citadin")
+                    {
+                        int tempMaxNuisible = maxNuisible / 2;
+                        int tempRat = aleatoire.Next(0, tempMaxNuisible);
+                        int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
+                        int tempZombie = 0;
+                        Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
+                    }
+                }
+            }
 
 
-                Console.WriteLine("\n");
+
+            Console.WriteLine("\n");
             Console.WriteLine("--------------------------------- ");
             Console.WriteLine("-- Debut de l'initialisation des positions -- ");
             Console.WriteLine("--------------------------------- ");
@@ -89,8 +98,9 @@ namespace TP_nuisible
                 nuisible.PositionX = tempx;
                 nuisible.PositionY = tempy;
                 nuisible.ID = i;
+                string tempChildClass = nuisible.getChildClass();
                 Console.WriteLine("--------------------------------- ");
-                Console.WriteLine("La position initial du nuisible ID : " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
+                Console.WriteLine("La position initial du " + tempChildClass + " ayant pour ID : " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
             }
 
             Console.WriteLine("\n");
@@ -173,7 +183,6 @@ namespace TP_nuisible
             Console.WriteLine("--------------------------------- ");
 
             // BOUCLE D'EVOLUTION DE L'ECOSYSTEME
-            int nbTics = 1000;
             for(int z = 0; z < nbTics; z++)
             {
 
