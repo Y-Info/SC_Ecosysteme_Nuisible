@@ -24,6 +24,13 @@ namespace TP_nuisible
             Ecosysteme MonEcosyst = new Ecosysteme(ecoLarg,ecoLong);
 
 
+            Nuisible zombieLabo = new Zombie();
+            MutantDecorator monMutant = new MutantDecorator(zombieLabo);
+            var testMutant = monMutant.Force;
+            var ttestZombeLabo = zombieLabo;
+            Console.WriteLine(testMutant);
+
+
             // Choix du Type d'ecosysteme et generation des nuisibles
             Console.WriteLine("Pour initialiser la simulation veuillez choisir un type d'ecosysteme : Aleatoire, UmbrellaCorp ou Citadin");
             string chooseEcoType = Console.ReadLine();
@@ -110,7 +117,7 @@ namespace TP_nuisible
             Console.WriteLine("-- Debut de la simulation -- ");
             Console.WriteLine("--------------------------------- ");
 
-            // BOUCLE D'EVOLUTION DE L'ECOSYSTEME
+            /// BOUCLE D'EVOLUTION DE L'ECOSYSTEME
             for(int z = 0; z < nbTics; z++)
             {
 
@@ -122,7 +129,7 @@ namespace TP_nuisible
                 Console.WriteLine("\n");
 
                 int orientation;
-                // Fait bouger tout le monde
+                // Deplacement aleatoire de chaque nuisibles
                 foreach (Nuisible nuisible in nuisibles)
                 {
                     orientation = aleatoire.Next(0, 8); 
@@ -147,26 +154,23 @@ namespace TP_nuisible
                 Console.WriteLine("\n");
 
 
-                // Test des collisions
+                // Collisions entre les nuisibles application de la methode adapte a chaque situation
                 foreach (Nuisible nuisible in nuisibles.ToList())
                 {
                     IEnumerable<Nuisible> memePos = nuisibles.Where((x) => x != nuisible && x.PositionX == nuisible.PositionX && x.PositionY == nuisible.PositionY);
 
                     var memePasArray = memePos.ToArray();
 
-                    //Console.WriteLine("L'objet numero : " + nuisible.ID + " est en colision avec : " + test1.Length + " Objet(s) ");
+                    //Console.WriteLine("L'objet numero : " + nuisible.ID + " est en collision avec : " + test1.Length + " Objet(s) ");
                     for (int y = 0; y < memePasArray.Length; y++)
                     {
                         if (memePasArray[y].ID > nuisible.ID)
                         {
-
-                            //Console.WriteLine("C'est l'objet : " + test1[y].ID + " positionner en " + test1[y].PositionX + "X" + test1[y].PositionY + "Y");
                             Console.WriteLine("Le nuisible ID : " + nuisible.ID + " est en collision avec le nuisible ID : " + memePasArray[y].ID );
                             int temprandom = aleatoire.Next(0, 2);
                             Nuisible.preFight(memePasArray[y], nuisible, temprandom, nuisibles);
                         }
                     }
-                    // Console.WriteLine("\n");
                 }
 
                 Console.WriteLine("\n");
@@ -183,7 +187,7 @@ namespace TP_nuisible
                 Console.WriteLine("--------------------------------- ");
                 Console.WriteLine("\n");
 
-                // Lecture du tableau
+                // Lecture du tableau nuisble
                 foreach (Nuisible nuisible in nuisibles)
                 {
                     string tempClass = nuisible.getChildClass();
@@ -191,11 +195,10 @@ namespace TP_nuisible
                     Console.WriteLine("Le Nuisible d'ID : " + nuisible.ID + " est un " + tempClass + " son etat actuel est : " + nuisible.Etat);
 
                     //Console.WriteLine("La position final de " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y  ayant pour orientation " + orientation + " et se deplace a une vitesse de " + nuisible.VitesseDeplacement);
-
                 }
 
                 Console.WriteLine("\n");
-                var affichTour = z + 1;
+                int affichTour = z + 1;
                 Console.WriteLine("Vous venez de terminer le tour numero : " + affichTour);
                 //Console.ReadLine();
             }

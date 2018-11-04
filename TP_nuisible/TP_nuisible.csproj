@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decorator.cs" />
     <Compile Include="Ecosysteme.cs" />
+    <Compile Include="MutantDecorator.cs" />
     <Compile Include="Nuisible.cs" />
     <Compile Include="NuisibleFactory.cs" />
     <Compile Include="Pigeon.cs" />
