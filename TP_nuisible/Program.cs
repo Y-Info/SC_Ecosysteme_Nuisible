@@ -10,25 +10,21 @@ namespace TP_nuisible
     {
         static void Main(string[] args)
         {
-            // initialisation des variables de parametrages
+            // Initialisation des variables de parametrages
             List<Nuisible> nuisibles = new List<Nuisible>();
             int ecoLarg = 100;
             int ecoLong = 100;
-            int maxNuisible = 19;
+            int maxNuisible = 500;
             int nbTics = 1000;
 
-            // initialisation de la variable random
+            // Initialisation de la variable random
             Random aleatoire = new Random();
 
-            // initialisation de la taille de l'ecosysteme
+            // Initialisation de la taille de l'ecosysteme
             Ecosysteme MonEcosyst = new Ecosysteme(ecoLarg,ecoLong);
 
 
-
-
-
-
-
+            // Choix du Type d'ecosysteme et generation des nuisibles
             Console.WriteLine("Pour initialiser la simulation veuillez choisir un type d'ecosysteme : Aleatoire, UmbrellaCorp ou Citadin");
             string chooseEcoType = Console.ReadLine();
             while (chooseEcoType != "Aleatoire" && chooseEcoType != "UmbrellaCorp" && chooseEcoType != "Citadin")
@@ -85,7 +81,7 @@ namespace TP_nuisible
             Console.WriteLine("\n");
 
 
-            // initialisation des positions et des ID pour chaque nuisible
+            // initialisation des positions et des ID pour chaque nuisible present dans la liste 
             int i = 0;
             foreach (Nuisible nuisible in nuisibles)
             {
@@ -110,74 +106,6 @@ namespace TP_nuisible
             Console.WriteLine ("\n");
 
             Console.ReadLine();
-
-
-
-            /// Zone de test de codes
-            //Console.WriteLine("\n");
-            //Console.WriteLine("--------------------------------- ");
-            //Console.WriteLine("-- Entree en zone de test -- ");
-            //Console.WriteLine("--------------------------------- ");
-            //Console.WriteLine ("\n");
-
-
-
-            // Partie de test des methodes
-            //Console.WriteLine("\n");
-            //Console.WriteLine("--------------------------------- ");
-            //Console.WriteLine("-- Nous allons faire des tests experimental sur fred -- ");
-            //Console.WriteLine("--------------------------------- ");
-            //Console.WriteLine("\n");
-
-
-            //int testrandom = aleatoire.Next(0, 2);
-            //Console.WriteLine("Le chiffre tiree aleatoirement est le " + testrandom);
-            //Nuisible.preFight(remi, ZGefrey, testrandom, nuisibles);
-            //Console.WriteLine("Il est arrivee malheur a remi !");
-            //Console.WriteLine("Remi est devenu : " + remi.Etat);
-
-
-            //Console.WriteLine("\n");
-            //Console.WriteLine("--------------------------------- ");
-            //Console.WriteLine("-- Fin de test sur fred. -- ");
-            //Console.WriteLine("--------------------------------- ");
-            //Console.WriteLine("\n");
-
-
-
-
-            
-
-            //if (titou.PositionY == ZGefrey.PositionY && titou.PositionX == ZGefrey.PositionX)
-            //    {
-            //        //Console.WriteLine("Zgefrey est au meme endroit que titou");
-            //    }
-
-            //Console.WriteLine("\n");
-            //Console.WriteLine("--------------------------------- ");
-            //Console.WriteLine("-- Sortie de zone de test -- ");
-            //Console.WriteLine("--------------------------------- ");
-            //Console.WriteLine ("\n");
-
-            //Console.ReadLine();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             Console.WriteLine("--------------------------------- ");
             Console.WriteLine("-- Debut de la simulation -- ");
             Console.WriteLine("--------------------------------- ");

@@ -22,11 +22,14 @@ namespace TP_nuisible
             this.LimiteY = maxY;
         }
 
+
+
+        // Methode de creation des Nuisibles de l'ecosysteme
         public static void FactoryCreator (int nbRat, int nbPigeon, int nbZombie, List<Nuisible> mesNuisibles)
         {
             int nbTotalNuisible = nbRat + nbPigeon + nbZombie;
 
-            // An array of creators
+            // Tableau de creation
             NuisibleFactory[] creators = new NuisibleFactory[nbTotalNuisible];
 
             int globalCount = 0;
@@ -46,10 +49,9 @@ namespace TP_nuisible
                 globalCount++;
             }
 
-            // Iterate over creators and create products
+            // Ajout de chaque nuisible cree dans la liste : nuisible
             foreach (NuisibleFactory creator in creators)
             {
-
                 Nuisible leNouveau = creator.Create();
                 mesNuisibles.Add(leNouveau);
             }

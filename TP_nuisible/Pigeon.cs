@@ -13,9 +13,5 @@ namespace TP_nuisible
             Etat = "VIVANT";
             VitesseDeplacement = 10;
         }
-        public void Roucouler()
-        {
-            Console.WriteLine("RhouRhou !");
-        }
     }
 }
