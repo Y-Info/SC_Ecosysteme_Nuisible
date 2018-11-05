@@ -10,7 +10,8 @@ namespace TP_nuisible
     {
         public int Force { get; set; }
 
-        public PigeonMutantDecorator()
+
+        public PigeonMutantDecorator(Pigeon monNuisible) : base(monNuisible)
         {
             this.Force = 15;
             this.Etat = "MUTANT";

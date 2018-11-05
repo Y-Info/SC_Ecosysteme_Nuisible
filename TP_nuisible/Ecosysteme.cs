@@ -25,7 +25,15 @@ namespace TP_nuisible
 
 
 
-        // Methode de creation des Nuisibles de l'ecosysteme
+        /// <summary>
+        /// Methode de creation de l'ecosysteme avec pour taille les variables ecosytemeLimX et ecosytemeLimY
+        /// Cette methode va aussi appeller la methode construction afin de generer les nuisibles de l'ecosystemes
+        /// </summary>
+        /// <param name="nomEco"> Nom de l'ecosysteme souhaiter</param>
+        /// <param name="maxNuisible">Nombre maximal de nuisible</param>
+        /// <param name="nuisibles">Listes des nuisibles evoluant dans l'ecosysteme</param>
+        /// <param name="ecosytemeLimX"> Limites de l'ecosysteme en X</param>
+        /// <param name="ecosytemeLimY"> Limites de l'ecosysteme en Y</param>
         public static void InitEcoSysteme (string nomEco , int maxNuisible, List<Nuisible> nuisibles, int ecosytemeLimX, int ecosytemeLimY)
         {
             if (nomEco == "UmbrellaCorp")
@@ -55,6 +63,14 @@ namespace TP_nuisible
                 }
             }
         }
+
+        /// <summary>
+        /// Methode factory pour la creation des nuisibles suivant les parametre
+        /// </summary>
+        /// <param name="nbRat">Nombre de rat a cree dans l'ecosysteme</param>
+        /// <param name="nbPigeon">Nombre de pigeon a cree dans l'ecosysteme</param>
+        /// <param name="nbZombie">Nombre de zombie a cree dans l'ecosysteme</param>
+        /// <param name="mesNuisibles">Listes des nuisibles qui vont evoluer dans l'ecosysteme</param>
         protected static void FactoryCreator (int nbRat, int nbPigeon, int nbZombie, List<Nuisible> mesNuisibles)
         {
             int nbTotalNuisible = nbRat + nbPigeon + nbZombie;

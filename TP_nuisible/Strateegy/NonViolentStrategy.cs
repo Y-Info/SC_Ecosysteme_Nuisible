@@ -4,15 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TP_nuisible
+namespace TP_nuisible.Strateegy
 {
-    public abstract class Decorator : Nuisible
+    class NonViolentStrategy : IStrategyNonViolent
     {
-        Nuisible modification = null;
-
-        protected Decorator()
+        public void NonViolence()
         {
-          
+            this.Etat = "NON-VIOLENT";
         }
     }
 }

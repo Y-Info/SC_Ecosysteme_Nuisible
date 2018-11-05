@@ -155,7 +155,14 @@ namespace TP_nuisible
         }
 
         /// Methodes Static Public :
-        // Methode de test collision
+        
+        /// <summary>
+        /// Methode de test de collision entre les nuisibles de la liste.
+        /// Envoie a la methode collisionsplit les deux nuisibles etant sur la meme case ainsi que la liste des nuisible et un random
+        /// 
+        /// La methode parcours le tableau en recuperant les positions de chaque nuisibles et les comparent entre elles.
+        /// </summary>
+        /// <param name="nuisibles">Liste des nuisibles evoluant dans l'ecosysteme</param>
         public static void TestCollision(List<Nuisible> nuisibles)
         {
             Random aleatoire = new Random();
@@ -189,6 +196,15 @@ namespace TP_nuisible
         }
 
         // Methode de test suite a une collision
+        /// <summary>
+        /// La methode split permet de comparer l'origine des objet et d'appeller la methode adapter en foction de cette origine.
+        /// Elle s'ocupe de renvoyer vers la methode zombification si un des deux objets est un zombie et l'autre non
+        /// Elle s'occupe de renvoyer vers la methode combat si ce sont des rats ou des pigeons
+        /// </summary>
+        /// <param name="firstChallenger">Premier objet nuisible</param>
+        /// <param name="secondChallenger">Second objet nuisible</param>
+        /// <param name="random"> Variable pour la future bataille</param>
+        /// <param name="vivant"> list des nuisible vivant evoluant dans l'ecosysteme</param>
         private static void CollisionSplit(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
         {
             if (firstChallenger.Etat == "MORT-VIVANT" || secondChallenger.Etat == "MORT-VIVANT")
@@ -243,7 +259,14 @@ namespace TP_nuisible
             // newZombie.VitesseDeplacement = 5;
         }
 
-        // Methode de combat entre rats et pigeons
+        /// <summary>
+        /// Methode de combat entre rats et pigeons un des deux doit sortir vivant et l'autre est mort, il est supprimer de la liste via l'appelle de la methode MortNuisible
+        /// Elle ne fait rien si les deux objet sont de la meme origine
+        /// </summary>
+        /// <param name="firstChallenger">Premier objet nuisible</param>
+        /// <param name="secondChallenger">Second objet nuisible</param>
+        /// <param name="random"> variable random permettant de definir quiva vivre et qui va mourrir</param>
+        /// <param name="vivant"> La liste des vivant qui sera modifier en conseqence dans cette methode</param>
         private static void Combat(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
         {
             Console.WriteLine("-------- Regular Fight --------");

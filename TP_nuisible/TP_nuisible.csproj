@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Decorator.cs" />
+    <Compile Include="Decorator\Decorator.cs" />
     <Compile Include="Ecosysteme.cs" />
     <Compile Include="ChildEcosysteme\EcosystemeAleatoire.cs" />
     <Compile Include="Factory\Ecosysteme\EcosystemeAleatoireFactory.cs" />
@@ -52,7 +52,7 @@
     <Compile Include="Factory\Ecosysteme\EcosystemeFactory.cs" />
     <Compile Include="ChildEcosysteme\EcosystemeUmbrellaCorp.cs" />
     <Compile Include="Factory\Ecosysteme\EcosystemeUmbrellaCorpFactory.cs" />
-    <Compile Include="PigeonMutantDecorator.cs" />
+    <Compile Include="Decorator\PigeonMutantDecorator.cs" />
     <Compile Include="Nuisible.cs" />
     <Compile Include="Factory\Nuisible\NuisibleFactory.cs" />
     <Compile Include="ChildNuisible\Pigeon.cs" />
@@ -63,9 +63,12 @@
     <Compile Include="Factory\Nuisible\RatFactory.cs" />
     <Compile Include="ChildNuisible\Zombie.cs" />
     <Compile Include="Factory\Nuisible\ZombieFactory.cs" />
+    <Compile Include="Strateegy\IStrategyNonViolent.cs" />
+    <Compile Include="Strateegy\NonViolentStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
