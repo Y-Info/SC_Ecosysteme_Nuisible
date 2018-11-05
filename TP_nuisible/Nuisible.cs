@@ -18,7 +18,7 @@ namespace TP_nuisible
 
         /// Methodes Public avec Return :
         //  Methode permettant de connaitre la classe d'un enfant de la classe nuisible
-        public string getChildClass()
+        public string GetChildClass()
         {
 
             string origin;
@@ -53,14 +53,6 @@ namespace TP_nuisible
 
 
         /// Methodes Public Void :
-        //  Methode pour la contamination d'un nuisible en zombie
-        public void ContaminationEnZombie()
-        {
-            this.VitesseDeplacement = 5;
-            this.Etat = "MORT-VIVANT";
-
-        }
-
         //  Methode de deplacement des nuisibles
         //  orientations : Nord : 0
         //                 Nord-Est : 1
@@ -70,47 +62,58 @@ namespace TP_nuisible
         //                 Sud-Ouest : 5
         //                 Ouet : 6
         //                 Nord-Ouest : 7
-        public void Deplacement(int maxX, int maxY, int orientation)
+        public static void Deplacement(int maxX, int maxY, List<Nuisible> nuisibles)
         {
-            int demiVitese;
-            demiVitese = (this.VitesseDeplacement - (this.VitesseDeplacement % 2)) / 2;
-            int tempNeg;
-            switch (orientation)
+            int orientation;
+            Random aleatoire = new Random();
+            // Deplacement aleatoire de chaque nuisibles
+            foreach (Nuisible nuisible in nuisibles)
             {
-                case 0:
-                    ModifPositionX(maxX, this.VitesseDeplacement);
-                    break;
-                case 1:
-                    ModifPositionX(maxX, demiVitese);
-                    ModifPositionY(maxY, demiVitese);
-                    break;
-                case 2:
-                    ModifPositionY(maxY, this.VitesseDeplacement);
-                    break;
-                case 3:
-                    tempNeg = -demiVitese;
-                    ModifPositionX(maxX, tempNeg);
-                    ModifPositionY(maxY, demiVitese);
-                    break;
-                case 4:
-                    tempNeg = -VitesseDeplacement;
-                    ModifPositionX(maxY, tempNeg);
-                    break;
-                case 5:
-                    tempNeg = -demiVitese;
-                    ModifPositionX(maxX, tempNeg);
-                    ModifPositionY(maxY, tempNeg);
-                    break;
-                case 6:
-                    tempNeg = -VitesseDeplacement;
-                    ModifPositionY(maxY, tempNeg);
-                    break;
-                case 7:
-                    tempNeg = -demiVitese;
-                    ModifPositionX(maxX, demiVitese);
-                    ModifPositionY(maxY, tempNeg);
-                    break;
-            }
+                orientation = aleatoire.Next(0, 8);
+                int demiVitese;
+                demiVitese = (nuisible.VitesseDeplacement - (nuisible.VitesseDeplacement % 2)) / 2;
+                int tempNeg;
+                switch (orientation)
+                {
+                    case 0:
+                        nuisible.ModifPositionX(maxX, nuisible.VitesseDeplacement);
+                        break;
+                    case 1:
+                        nuisible.ModifPositionX(maxX, demiVitese);
+                        nuisible.ModifPositionY(maxY, demiVitese);
+                        break;
+                    case 2:
+                        nuisible.ModifPositionY(maxY, nuisible.VitesseDeplacement);
+                        break;
+                    case 3:
+                        tempNeg = -demiVitese;
+                        nuisible.ModifPositionX(maxX, tempNeg);
+                        nuisible.ModifPositionY(maxY, demiVitese);
+                        break;
+                    case 4:
+                        tempNeg = -nuisible.VitesseDeplacement;
+                        nuisible.ModifPositionX(maxY, tempNeg);
+                        break;
+                    case 5:
+                        tempNeg = -demiVitese;
+                        nuisible.ModifPositionX(maxX, tempNeg);
+                        nuisible.ModifPositionY(maxY, tempNeg);
+                        break;
+                    case 6:
+                        tempNeg = -nuisible.VitesseDeplacement;
+                        nuisible.ModifPositionY(maxY, tempNeg);
+                        break;
+                    case 7:
+                        tempNeg = -demiVitese;
+                        nuisible.ModifPositionX(maxX, demiVitese);
+                        nuisible.ModifPositionY(maxY, tempNeg);
+                        break;
+                }
+                Console.WriteLine("--------------------------------- ");
+                Console.WriteLine("La position final du nuisible ID : " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
+                //Console.WriteLine("La position final de " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y  ayant pour orientation " + orientation + " et se deplace a une vitesse de " + nuisible.VitesseDeplacement);
+            }  
+            
         }
 
 
@@ -152,14 +155,87 @@ namespace TP_nuisible
         }
 
         /// Methodes Static Public :
+        // Methode de test collision
+        public static void TestCollision(List<Nuisible> nuisibles)
+        {
+            Random aleatoire = new Random();
+            foreach (Nuisible nuisible in nuisibles.ToList())
+            {
+                IEnumerable<Nuisible> memePos = nuisibles.Where((x) => x != nuisible && x.PositionX == nuisible.PositionX && x.PositionY == nuisible.PositionY);
+
+                var memePasArray = memePos.ToArray();
+
+                //Console.WriteLine("L'objet numero : " + nuisible.ID + " est en collision avec : " + test1.Length + " Objet(s) ");
+                for (int y = 0; y < memePasArray.Length; y++)
+                {
+                    if (memePasArray[y].ID > nuisible.ID)
+                    {
+                        Console.WriteLine("Le nuisible ID : " + nuisible.ID + " est en collision avec le nuisible ID : " + memePasArray[y].ID);
+                        int temprandom = aleatoire.Next(0, 2);
+                        Nuisible.CollisionSplit(memePasArray[y], nuisible, temprandom, nuisibles);
+                    }
+                }
+            }
+        }
+
+        public static void ChoixEco(int maxNuisible, string Eco, List<Nuisible> nuisibles)
+        {
+            Random aleatoire = new Random();
+            if (Eco == "Aleatoire")
+            {
+                int tempMaxNuisible = maxNuisible / 3;
+                int tempRat = aleatoire.Next(0, tempMaxNuisible);
+                int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
+                int tempZombie = aleatoire.Next(0, tempMaxNuisible);
+                Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
+            }
+            else
+            {
+                if (Eco == "UmbrellaCorp")
+                {
+                    int tempMaxNuisible = maxNuisible / 4;
+                    int tempRat = aleatoire.Next(0, tempMaxNuisible);
+                    int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
+
+                    int fiftyZombie = tempRat + tempPigeon;
+
+                    int tempRest = maxNuisible - fiftyZombie - tempRat - tempPigeon;
+                    int alealRest = aleatoire.Next(0, tempRest);
+                    int tempZombie = (tempRat + tempPigeon + alealRest);
+                    Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
+                }
+                else
+                {
+                    if (Eco == "Citadin")
+                    {
+                        int tempMaxNuisible = maxNuisible / 2;
+                        int tempRat = aleatoire.Next(0, tempMaxNuisible);
+                        int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
+                        int tempZombie = 0;
+                        Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
+                    }
+                }
+            }
+        }
+
+
+
+        /// Methodes Static Private :
+        //  Methode de suppression d'instance et suppression dans la liste des vivants
+        private static void MortNuisible(Nuisible obj, List<Nuisible> vivant)
+        {
+            vivant.Remove(obj);
+            obj = null;
+        }
+
         // Methode de test suite a une collision
-        public static void preFight(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
+        private static void CollisionSplit(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
         {
             if (firstChallenger.Etat == "MORT-VIVANT" || secondChallenger.Etat == "MORT-VIVANT")
             {
                 if (firstChallenger.Etat != "MORT-VIVANT" && secondChallenger.Etat == "MORT-VIVANT")
                 {
-                    Nuisible.zombification(firstChallenger);
+                    Nuisible.Zombification(firstChallenger);
                     Console.WriteLine("Il c'est fait transformer par le nuisible ID : " + secondChallenger.ID);
                     Console.WriteLine("\n");
                 }
@@ -167,7 +243,7 @@ namespace TP_nuisible
                 {
                     if (secondChallenger.Etat != "MORT-VIVANT" && firstChallenger.Etat == "MORT-VIVANT")
                     {
-                        Nuisible.zombification(secondChallenger);
+                        Nuisible.Zombification(secondChallenger);
                         Console.WriteLine("Il c'est fait transforme par le nuisible ID : " + firstChallenger.ID);
                         Console.WriteLine("\n");
                     }
@@ -190,23 +266,13 @@ namespace TP_nuisible
             }
             else
             {
-                Nuisible.regularFight(firstChallenger, secondChallenger, random, vivant);
+                Nuisible.Combat(firstChallenger, secondChallenger, random, vivant);
             }
         }
 
 
-
-        /// Methodes Static Private :
-        //  Methode de suppression d'instance et suppression dans la liste des vivants
-        private static void selectionNaturel(Nuisible obj, List<Nuisible> vivant)
-        {
-            vivant.Remove(obj);
-            obj = null;
-        }
-
-
         // Methode de zombification
-        private static void zombification(Nuisible newZombie)
+        private static void Zombification(Nuisible newZombie)
         {
             if (newZombie.Etat != "MORT-VIVANT")
             {
@@ -218,16 +284,16 @@ namespace TP_nuisible
         }
 
         // Methode de combat entre rats et pigeons
-        private static void regularFight(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
+        private static void Combat(Nuisible firstChallenger, Nuisible secondChallenger, int random, List<Nuisible> vivant)
         {
             Console.WriteLine("-------- Regular Fight --------");
-            string firstOrigin = firstChallenger.getChildClass();
-            string secondOrigin = secondChallenger.getChildClass();
+            string firstOrigin = firstChallenger.GetChildClass();
+            string secondOrigin = secondChallenger.GetChildClass();
 
             if (firstOrigin == "rat" && random == 0 && secondOrigin == "pigeon" || firstOrigin == "pigeon" && random == 1 && secondOrigin == "rat")
             {
                 Console.WriteLine("Le nuisible ID : " + secondChallenger.ID + " " + secondOrigin + " a tuer le nuisible ID : " + firstChallenger.ID + " " + firstOrigin);
-                Nuisible.selectionNaturel(firstChallenger, vivant);
+                Nuisible.MortNuisible(firstChallenger, vivant);
                 firstChallenger.Etat = "MORT";
             }
             else
@@ -235,7 +301,7 @@ namespace TP_nuisible
                 if (firstOrigin == "rat" && random == 1 && secondOrigin == "pigeon" || firstOrigin == "pigeon" && random == 0 && secondOrigin == "rat")
                 {
                     Console.WriteLine("Le nuisible ID : " + firstChallenger.ID + " " + firstOrigin + " a tuer le nuisible ID : " + secondChallenger.ID + " " + secondOrigin);
-                    Nuisible.selectionNaturel(secondChallenger, vivant);
+                    Nuisible.MortNuisible(secondChallenger, vivant);
                     secondChallenger.Etat = "MORT";
                 }
                 else

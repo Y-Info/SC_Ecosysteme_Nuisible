@@ -12,10 +12,10 @@ namespace TP_nuisible
         {
             // Initialisation des variables de parametrages
             List<Nuisible> nuisibles = new List<Nuisible>();
-            int ecoLarg = 100;
-            int ecoLong = 100;
-            int maxNuisible = 500;
-            int nbTics = 1000;
+            int ecoLarg = 2;
+            int ecoLong = 2;
+            int maxNuisible = 20;
+            int nbTics = 10;
 
             // Initialisation de la variable random
             Random aleatoire = new Random();
@@ -43,41 +43,9 @@ namespace TP_nuisible
                 Console.WriteLine("\n");
             }
 
-            if(chooseEcoType == "Aleatoire")
-            {
-                int tempMaxNuisible = maxNuisible / 3;
-                int tempRat = aleatoire.Next(0,tempMaxNuisible);
-                int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
-                int tempZombie = aleatoire.Next(0, tempMaxNuisible);
-                Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
-            }
-            else
-            {
-                if(chooseEcoType == "UmbrellaCorp")
-                {
-                    int tempMaxNuisible = maxNuisible / 4;
-                    int tempRat = aleatoire.Next(0, tempMaxNuisible);
-                    int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
 
-                    int fiftyZombie = tempRat + tempPigeon;
-
-                    int tempRest = maxNuisible - fiftyZombie - tempRat - tempPigeon;
-                    int alealRest = aleatoire.Next(0, tempRest);
-                    int tempZombie = (tempRat + tempPigeon + alealRest);
-                    Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
-                }
-                else
-                {
-                    if(chooseEcoType == "Citadin")
-                    {
-                        int tempMaxNuisible = maxNuisible / 2;
-                        int tempRat = aleatoire.Next(0, tempMaxNuisible);
-                        int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
-                        int tempZombie = 0;
-                        Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
-                    }
-                }
-            }
+            //Construction des Nuisible en fonction de l'ecosysteme
+            Nuisible.ChoixEco(maxNuisible, chooseEcoType, nuisibles);
 
 
 
@@ -101,7 +69,7 @@ namespace TP_nuisible
                 nuisible.PositionX = tempx;
                 nuisible.PositionY = tempy;
                 nuisible.ID = i;
-                string tempChildClass = nuisible.getChildClass();
+                string tempChildClass = nuisible.GetChildClass();
                 Console.WriteLine("--------------------------------- ");
                 Console.WriteLine("La position initial du " + tempChildClass + " ayant pour ID : " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
             }
@@ -128,17 +96,9 @@ namespace TP_nuisible
                 Console.WriteLine("--------------------------------- ");
                 Console.WriteLine("\n");
 
-                int orientation;
-                // Deplacement aleatoire de chaque nuisibles
-                foreach (Nuisible nuisible in nuisibles)
-                {
-                    orientation = aleatoire.Next(0, 8); 
-                    nuisible.Deplacement(MonEcosyst.LimiteX, MonEcosyst.LimiteY, orientation);
-                    Console.WriteLine("--------------------------------- ");
-                    Console.WriteLine("La position final du nuisible ID : " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y");
-                    //Console.WriteLine("La position final de " + nuisible.ID + " est : " + nuisible.PositionX + "X" + nuisible.PositionY + "Y  ayant pour orientation " + orientation + " et se deplace a une vitesse de " + nuisible.VitesseDeplacement);
-
-                }
+                // Deplacement aleatoire des nuisibles
+                Nuisible.Deplacement(MonEcosyst.LimiteX, MonEcosyst.LimiteY, nuisibles);
+            
 
                 Console.WriteLine("\n");
                 Console.WriteLine("--------------------------------- ");
@@ -155,23 +115,7 @@ namespace TP_nuisible
 
 
                 // Collisions entre les nuisibles application de la methode adapte a chaque situation
-                foreach (Nuisible nuisible in nuisibles.ToList())
-                {
-                    IEnumerable<Nuisible> memePos = nuisibles.Where((x) => x != nuisible && x.PositionX == nuisible.PositionX && x.PositionY == nuisible.PositionY);
-
-                    var memePasArray = memePos.ToArray();
-
-                    //Console.WriteLine("L'objet numero : " + nuisible.ID + " est en collision avec : " + test1.Length + " Objet(s) ");
-                    for (int y = 0; y < memePasArray.Length; y++)
-                    {
-                        if (memePasArray[y].ID > nuisible.ID)
-                        {
-                            Console.WriteLine("Le nuisible ID : " + nuisible.ID + " est en collision avec le nuisible ID : " + memePasArray[y].ID );
-                            int temprandom = aleatoire.Next(0, 2);
-                            Nuisible.preFight(memePasArray[y], nuisible, temprandom, nuisibles);
-                        }
-                    }
-                }
+                Nuisible.TestCollision(nuisibles);        
 
                 Console.WriteLine("\n");
                 Console.WriteLine("--------------------------------- ");
@@ -190,7 +134,7 @@ namespace TP_nuisible
                 // Lecture du tableau nuisble
                 foreach (Nuisible nuisible in nuisibles)
                 {
-                    string tempClass = nuisible.getChildClass();
+                    string tempClass = nuisible.GetChildClass();
                     Console.WriteLine("--------------------------------- ");
                     Console.WriteLine("Le Nuisible d'ID : " + nuisible.ID + " est un " + tempClass + " son etat actuel est : " + nuisible.Etat);
 
@@ -200,16 +144,15 @@ namespace TP_nuisible
                 Console.WriteLine("\n");
                 int affichTour = z + 1;
                 Console.WriteLine("Vous venez de terminer le tour numero : " + affichTour);
-                //Console.ReadLine();
+                Console.ReadLine();
             }
-
-
 
             Console.WriteLine("--------------------------------- ");
             Console.WriteLine("-- Fin de la simulation -- ");
             Console.WriteLine("--------------------------------- ");
 
             Console.ReadLine();
+
         }
     }
 }

@@ -22,8 +22,6 @@ namespace TP_nuisible
             this.LimiteY = maxY;
         }
 
-
-
         // Methode de creation des Nuisibles de l'ecosysteme
         public static void FactoryCreator (int nbRat, int nbPigeon, int nbZombie, List<Nuisible> mesNuisibles)
         {
