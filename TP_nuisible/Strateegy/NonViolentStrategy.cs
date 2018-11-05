@@ -10,7 +10,7 @@ namespace TP_nuisible.Strateegy
     {
         public void NonViolence()
         {
-            this.Etat = "NON-VIOLENT";
+            //this.Etat = "NON-VIOLENT";
         }
     }
 }

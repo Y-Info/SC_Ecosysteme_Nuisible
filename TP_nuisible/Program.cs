@@ -21,11 +21,11 @@ namespace TP_nuisible
             Random aleatoire = new Random();
 
 
-            Nuisible zombieLabo = new Zombie();
-            PigeonMutantDecorator monMutant = new PigeonMutantDecorator(zombieLabo);
-            var testMutant = monMutant.Force;
-            var ttestZombeLabo = zombieLabo;
-            Console.WriteLine(testMutant);
+            //Nuisible zombieLabo = new Zombie();
+            //PigeonMutantDecorator monMutant = new PigeonMutantDecorator(zombieLabo);
+            //var testMutant = monMutant.Force;
+            //var ttestZombeLabo = zombieLabo;
+            //Console.WriteLine(testMutant);
 
 
             // Choix du Type d'ecosysteme et generation des nuisibles
