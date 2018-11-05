@@ -178,46 +178,6 @@ namespace TP_nuisible
             }
         }
 
-        public static void ChoixEco(int maxNuisible, string Eco, List<Nuisible> nuisibles)
-        {
-            Random aleatoire = new Random();
-            if (Eco == "Aleatoire")
-            {
-                int tempMaxNuisible = maxNuisible / 3;
-                int tempRat = aleatoire.Next(0, tempMaxNuisible);
-                int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
-                int tempZombie = aleatoire.Next(0, tempMaxNuisible);
-                Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
-            }
-            else
-            {
-                if (Eco == "UmbrellaCorp")
-                {
-                    int tempMaxNuisible = maxNuisible / 4;
-                    int tempRat = aleatoire.Next(0, tempMaxNuisible);
-                    int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
-
-                    int fiftyZombie = tempRat + tempPigeon;
-
-                    int tempRest = maxNuisible - fiftyZombie - tempRat - tempPigeon;
-                    int alealRest = aleatoire.Next(0, tempRest);
-                    int tempZombie = (tempRat + tempPigeon + alealRest);
-                    Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
-                }
-                else
-                {
-                    if (Eco == "Citadin")
-                    {
-                        int tempMaxNuisible = maxNuisible / 2;
-                        int tempRat = aleatoire.Next(0, tempMaxNuisible);
-                        int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
-                        int tempZombie = 0;
-                        Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
-                    }
-                }
-            }
-        }
-
 
 
         /// Methodes Static Private :

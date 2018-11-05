@@ -45,6 +45,13 @@
   <ItemGroup>
     <Compile Include="Decorator.cs" />
     <Compile Include="Ecosysteme.cs" />
+    <Compile Include="EcosystemeAleatoire.cs" />
+    <Compile Include="EcosystemeAleatoireFactory.cs" />
+    <Compile Include="EcosystemeCitadin.cs" />
+    <Compile Include="EcosystemeCitadinFactory.cs" />
+    <Compile Include="EcosystemeFactory.cs" />
+    <Compile Include="EcosystemeUmbrellaCorp.cs" />
+    <Compile Include="EcosystemeUmbrellaCorpFactory.cs" />
     <Compile Include="MutantDecorator.cs" />
     <Compile Include="Nuisible.cs" />
     <Compile Include="NuisibleFactory.cs" />

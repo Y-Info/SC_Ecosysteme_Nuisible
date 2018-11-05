@@ -12,16 +12,13 @@ namespace TP_nuisible
         {
             // Initialisation des variables de parametrages
             List<Nuisible> nuisibles = new List<Nuisible>();
-            int ecoLarg = 2;
-            int ecoLong = 2;
+            int ecosytemeLimX = 2;
+            int ecosytemeLimY = 2;
             int maxNuisible = 20;
             int nbTics = 10;
 
             // Initialisation de la variable random
             Random aleatoire = new Random();
-
-            // Initialisation de la taille de l'ecosysteme
-            Ecosysteme MonEcosyst = new Ecosysteme(ecoLarg,ecoLong);
 
 
             Nuisible zombieLabo = new Zombie();
@@ -43,10 +40,8 @@ namespace TP_nuisible
                 Console.WriteLine("\n");
             }
 
-
-            //Construction des Nuisible en fonction de l'ecosysteme
-            Nuisible.ChoixEco(maxNuisible, chooseEcoType, nuisibles);
-
+            // Initialisation de l'ecosysteme en fonction du choix
+            Ecosysteme.InitEcoSysteme(chooseEcoType, maxNuisible, nuisibles, ecosytemeLimX, ecosytemeLimY);
 
 
             Console.WriteLine("\n");
@@ -62,8 +57,8 @@ namespace TP_nuisible
             {
                 i = i + 1;
                 int minPos = 0;
-                int maxPosX = MonEcosyst.LimiteX + 1;
-                int maxPosY = MonEcosyst.LimiteY + 1;
+                int maxPosX = ecosytemeLimX + 1;
+                int maxPosY = ecosytemeLimY + 1;
                 int tempx = aleatoire.Next(minPos, maxPosX);
                 int tempy = aleatoire.Next(minPos, maxPosY);
                 nuisible.PositionX = tempx;
@@ -97,7 +92,7 @@ namespace TP_nuisible
                 Console.WriteLine("\n");
 
                 // Deplacement aleatoire des nuisibles
-                Nuisible.Deplacement(MonEcosyst.LimiteX, MonEcosyst.LimiteY, nuisibles);
+                Nuisible.Deplacement(ecosytemeLimX, ecosytemeLimY, nuisibles);
             
 
                 Console.WriteLine("\n");
