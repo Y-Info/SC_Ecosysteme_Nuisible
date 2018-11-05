@@ -13,9 +13,9 @@ namespace TP_nuisible
 
         }
 
-        public override Ecosysteme Construction(int maxNuisible, List<Nuisible> nuisibles, int largeur, int longueur)
+        public override Ecosysteme Construction(int maxNuisible, List<Nuisible> nuisibles, int ecosytemeLimX, int ecosytemeLimY)
         {
-            Ecosysteme u = new EcosystemeUmbrellaCorp(maxNuisible, nuisibles, largeur, longueur);
+            Ecosysteme u = new EcosystemeUmbrellaCorp(maxNuisible, nuisibles, ecosytemeLimX, ecosytemeLimY);
             return u;
         }
     }

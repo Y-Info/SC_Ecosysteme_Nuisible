@@ -11,7 +11,7 @@ namespace TP_nuisible
         public EcosystemeFactory()
         {
         }
-        public abstract Ecosysteme Construction(int maxNuisible, List<Nuisible> nuisibles, int largeur, int longueur);
+        public abstract Ecosysteme Construction(int maxNuisible, List<Nuisible> nuisibles, int ecosytemeLimX, int ecosytemeLimY);
 
     
     }

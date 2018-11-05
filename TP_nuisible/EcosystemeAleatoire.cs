@@ -8,7 +8,7 @@ namespace TP_nuisible
 {
     class EcosystemeAleatoire : Ecosysteme
     {
-        public EcosystemeAleatoire(int maxNuisible, List<Nuisible> nuisibles, int largeur, int longueur)
+        public EcosystemeAleatoire(int maxNuisible, List<Nuisible> nuisibles, int ecosytemeLimX, int ecosytemeLimY)
         {
             Random aleatoire = new Random();
             int tempMaxNuisible = maxNuisible / 3;
@@ -16,8 +16,8 @@ namespace TP_nuisible
             int tempPigeon = aleatoire.Next(0, tempMaxNuisible);
             int tempZombie = aleatoire.Next(0, tempMaxNuisible);
             Ecosysteme.FactoryCreator(tempRat, tempPigeon, tempZombie, nuisibles);
-            this.LimiteX = largeur;
-            this.LimiteY = longueur;
+            this.LimiteX = ecosytemeLimX;
+            this.LimiteY = ecosytemeLimY;
         }
     }
 }
