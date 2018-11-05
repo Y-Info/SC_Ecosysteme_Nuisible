@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace TP_nuisible
 {
-    class MutantDecorator : Decorator
+    class PigeonMutantDecorator : Decorator
     {
         public int Force { get; set; }
 
-
-        public MutantDecorator(Nuisible monMutant) : base (monMutant)
+        public PigeonMutantDecorator()
         {
             this.Force = 15;
             this.Etat = "MUTANT";

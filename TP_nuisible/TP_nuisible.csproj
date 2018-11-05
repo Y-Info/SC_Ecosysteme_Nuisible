@@ -45,24 +45,24 @@
   <ItemGroup>
     <Compile Include="Decorator.cs" />
     <Compile Include="Ecosysteme.cs" />
-    <Compile Include="EcosystemeAleatoire.cs" />
-    <Compile Include="EcosystemeAleatoireFactory.cs" />
-    <Compile Include="EcosystemeCitadin.cs" />
-    <Compile Include="EcosystemeCitadinFactory.cs" />
-    <Compile Include="EcosystemeFactory.cs" />
-    <Compile Include="EcosystemeUmbrellaCorp.cs" />
-    <Compile Include="EcosystemeUmbrellaCorpFactory.cs" />
-    <Compile Include="MutantDecorator.cs" />
+    <Compile Include="ChildEcosysteme\EcosystemeAleatoire.cs" />
+    <Compile Include="Factory\Ecosysteme\EcosystemeAleatoireFactory.cs" />
+    <Compile Include="ChildEcosysteme\EcosystemeCitadin.cs" />
+    <Compile Include="Factory\Ecosysteme\EcosystemeCitadinFactory.cs" />
+    <Compile Include="Factory\Ecosysteme\EcosystemeFactory.cs" />
+    <Compile Include="ChildEcosysteme\EcosystemeUmbrellaCorp.cs" />
+    <Compile Include="Factory\Ecosysteme\EcosystemeUmbrellaCorpFactory.cs" />
+    <Compile Include="PigeonMutantDecorator.cs" />
     <Compile Include="Nuisible.cs" />
-    <Compile Include="NuisibleFactory.cs" />
-    <Compile Include="Pigeon.cs" />
-    <Compile Include="PigeonFactory.cs" />
+    <Compile Include="Factory\Nuisible\NuisibleFactory.cs" />
+    <Compile Include="ChildNuisible\Pigeon.cs" />
+    <Compile Include="Factory\Nuisible\PigeonFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rat.cs" />
-    <Compile Include="RatFactory.cs" />
-    <Compile Include="Zombie.cs" />
-    <Compile Include="ZombieFactory.cs" />
+    <Compile Include="ChildNuisible\Rat.cs" />
+    <Compile Include="Factory\Nuisible\RatFactory.cs" />
+    <Compile Include="ChildNuisible\Zombie.cs" />
+    <Compile Include="Factory\Nuisible\ZombieFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

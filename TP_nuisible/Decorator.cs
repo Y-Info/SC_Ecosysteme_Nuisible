@@ -10,9 +10,9 @@ namespace TP_nuisible
     {
         Nuisible modification = null;
 
-        protected Decorator(Nuisible aMuter)
+        protected Decorator()
         {
-            modification = aMuter;
+          
         }
     }
 }

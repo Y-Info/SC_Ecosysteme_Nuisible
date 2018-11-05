@@ -12,17 +12,17 @@ namespace TP_nuisible
         {
             // Initialisation des variables de parametrages
             List<Nuisible> nuisibles = new List<Nuisible>();
-            int ecosytemeLimX = 2;
-            int ecosytemeLimY = 2;
-            int maxNuisible = 20;
-            int nbTics = 10;
+            int ecosytemeLimX = 100;
+            int ecosytemeLimY = 100;
+            int maxNuisible = 200;
+            int nbTics = 1000;
 
             // Initialisation de la variable random
             Random aleatoire = new Random();
 
 
             Nuisible zombieLabo = new Zombie();
-            MutantDecorator monMutant = new MutantDecorator(zombieLabo);
+            PigeonMutantDecorator monMutant = new PigeonMutantDecorator(zombieLabo);
             var testMutant = monMutant.Force;
             var ttestZombeLabo = zombieLabo;
             Console.WriteLine(testMutant);
@@ -139,7 +139,7 @@ namespace TP_nuisible
                 Console.WriteLine("\n");
                 int affichTour = z + 1;
                 Console.WriteLine("Vous venez de terminer le tour numero : " + affichTour);
-                Console.ReadLine();
+                //Console.ReadLine();
             }
 
             Console.WriteLine("--------------------------------- ");
